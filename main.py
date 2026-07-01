@@ -1,4 +1,4 @@
-# Step 0: Create the list of heroes with their gender and power
+# Create the list of heroes with their gender and power
 raw_heroes = [
     ("Thunderclaw", 542137), ("Starblaze", 310982),
     ("Ironvolt", 811530), ("Nightshade", 125674),
@@ -30,10 +30,10 @@ for index, (name, power) in enumerate(raw_heroes):
     gender = "Male" if index % 2 == 0 else "Female"
     heroes.append({"name": name, "power": power, "gender": gender, "original_index": index})
 
-# Step 1: Sort heroes by power descending
+# Sort heroes by power descending
 sorted_heroes = sorted(heroes, key=lambda x: x["power"], reverse=True)
 
-# Step 2: Champion (strongest hero)
+# Champion (strongest hero)
 champion = sorted_heroes[0]
 
 # Step 3: Filter remaining heroes by gender
@@ -42,13 +42,13 @@ remaining_heroes = sorted_heroes[1:]
 males = [h for h in remaining_heroes if h["gender"] == "Male"]
 females = [h for h in remaining_heroes if h["gender"] == "Female"]
 
-# Step 4: Top 3 males
+# Top 3 males
 top_3_males = males[:3]
 
-# Step 5: Top 3 females
+# Top 3 females
 top_3_females = females[:3]
 
-# Step 6: 10 weakest remaining heroes (excluding champion + top 3 males + top 3 females)
+# 10 weakest remaining heroes (excluding champion + top 3 males + top 3 females)
 excluded_names = {champion["name"]} | {h["name"] for h in top_3_males} | {h["name"] for h in top_3_females}
 remaining_for_weakest = [h for h in heroes if h["name"] not in excluded_names]
 weakest_10 = sorted(remaining_for_weakest, key=lambda x: x["power"])[:10]
